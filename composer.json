@@ -9,9 +9,13 @@
         "ext-iconv": "*",
         "symfony/cache": "7.3.*",
         "symfony/console": "7.3.*",
+        "symfony/discord-notifier": "7.3.*",
         "symfony/dotenv": "7.3.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "7.3.*",
+        "symfony/mailer": "7.3.*",
+        "symfony/mailtrap-mailer": "7.3.*",
+        "symfony/notifier": "7.3.*",
         "symfony/runtime": "7.3.*",
         "symfony/yaml": "7.3.*"
     },
