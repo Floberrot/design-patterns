@@ -3,6 +3,8 @@
 namespace App\Patterns\Creational\Factory;
 
 use App\Core\AbstractServices;
+use App\Patterns\Creational\Factory\Discord\DiscordFactoryNotification;
+use App\Patterns\Creational\Factory\Email\EmailFactoryNotification;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -18,10 +20,11 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 class MakeTestFactoryCommand extends Command
 {
     public function __construct(
-        private readonly AbstractServices $services
+        private EmailFactoryNotification $emailFactoryNotification,
+        private DiscordFactoryNotification $discordFactoryNotification
     )
     {
-        parent::__construct();
+        parent::__construct('make:test-factory');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -30,15 +33,11 @@ class MakeTestFactoryCommand extends Command
 
         $io->title('Factory Pattern Test');
         $io->section('Creating Email Notification');
-        $emailFactory = new Email\EmailFactoryNotification($this->services);
-        $emailNotification = $emailFactory->factoryMethod($this->services);
-        $emailNotification->send();
+        $this->emailFactoryNotification->sendNotification();
 
         $io->success('Email Notification sent successfully.');
         $io->section('Creating Discord Notification');
-        $discordFactory = new Discord\DiscordFactoryNotification($this->services);
-        $discordNotification = $discordFactory->factoryMethod($this->services);
-        $discordNotification->send();
+        $this->discordFactoryNotification->sendNotification();
 
         return Command::SUCCESS;
     }

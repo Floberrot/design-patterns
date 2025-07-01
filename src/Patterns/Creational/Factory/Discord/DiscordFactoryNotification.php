@@ -8,13 +8,19 @@ use App\Patterns\Creational\Factory\NotificationsFactory;
 
 class DiscordFactoryNotification extends NotificationsFactory
 {
-    public function __construct()
+    public function __construct(
+        private readonly DiscordNotification $notification,
+    )
     {
-        parent::__construct($this->services);
     }
 
     public function factoryMethod(): Notification
     {
-        return new DiscordNotification($this->services);
+        return $this->notification;
+    }
+
+    public function sendNotification(): void
+    {
+        parent::sendNotification();
     }
 }

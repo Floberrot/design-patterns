@@ -11,14 +11,8 @@ use Symfony\Component\Notifier\Exception\TransportExceptionInterface;
 use Symfony\Component\Notifier\Message\ChatMessage;
 use Symfony\Component\Notifier\Notification\Notification as SymfonyNotification;
 
-final class DiscordNotification implements Notification
+final class DiscordNotification extends AbstractServices implements Notification
 {
-
-    public function __construct(
-        private readonly AbstractServices $services
-    )
-    {
-    }
 
     /**
      * @throws TransportExceptionInterface
@@ -34,6 +28,6 @@ final class DiscordNotification implements Notification
         ;
 
         $chatMessage->options($discordOptions);
-        $this->services->getDiscordNotifier()->send($chatMessage);
+        $this->getDiscordNotifier()->send($chatMessage);
     }
 }

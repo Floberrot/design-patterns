@@ -10,14 +10,8 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\RawMessage;
 
-final class EmailNotification implements Notification
+final class EmailNotification extends AbstractServices implements Notification
 {
-    public function __construct(
-        private readonly AbstractServices $services
-    )
-    {
-    }
-
     /**
      * @throws TransportExceptionInterface
      *
@@ -27,7 +21,7 @@ final class EmailNotification implements Notification
         // here we optionally add more logic or parameters to have a more complex email
         $sender = new Address('test@test.com', 'Test Sender');
         $recipient = new Address('coucou@coucou.com', 'Coucou Recipient');
-        $this->services->getMailer()->send(new RawMessage('Subject: Test Email'), new Envelope(
+        $this->getMailer()->send(new RawMessage('Subject: Test Email'), new Envelope(
             $sender,
             [$recipient]
         ));

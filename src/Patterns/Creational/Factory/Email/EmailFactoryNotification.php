@@ -6,13 +6,19 @@ use App\Patterns\Creational\Factory\NotificationsFactory;
 
 class EmailFactoryNotification extends NotificationsFactory
 {
-    public function __construct()
+    public function __construct(
+        private readonly EmailNotification $notification,
+    )
     {
-        parent::__construct($this->services);
     }
 
     public function factoryMethod(): EmailNotification
     {
-        return new EmailNotification($this->services);
+        return $this->notification;
+    }
+
+    public function sendNotification(): void
+    {
+        parent::sendNotification();
     }
 }
