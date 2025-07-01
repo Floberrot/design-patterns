@@ -7,12 +7,12 @@ use App\Core\AbstractServices;
 abstract class NotificationsFactory
 {
     public function __construct(
-        private readonly AbstractServices $services
+        protected readonly AbstractServices $services
     )
     {
     }
 
-    abstract public function factoryMethod(AbstractServices $services): Notification;
+    abstract public function factoryMethod(): Notification;
 
     public function sendNotification(): void
     {

@@ -2,19 +2,17 @@
 
 namespace App\Patterns\Creational\Factory\Email;
 
-use App\Core\AbstractServices;
-use App\Patterns\Creational\Factory\Notification;
 use App\Patterns\Creational\Factory\NotificationsFactory;
 
 class EmailFactoryNotification extends NotificationsFactory
 {
-    public function __construct(AbstractServices $services)
+    public function __construct()
     {
-        parent::__construct($services);
+        parent::__construct($this->services);
     }
 
-    public function factoryMethod(AbstractServices $services): EmailNotification
+    public function factoryMethod(): EmailNotification
     {
-        return new EmailNotification($services);
+        return new EmailNotification($this->services);
     }
 }
