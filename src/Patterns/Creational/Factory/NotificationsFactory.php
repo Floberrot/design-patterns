@@ -2,8 +2,6 @@
 
 namespace App\Patterns\Creational\Factory;
 
-use App\Core\AbstractServices;
-
 abstract class NotificationsFactory
 {
     abstract public function factoryMethod(): Notification;

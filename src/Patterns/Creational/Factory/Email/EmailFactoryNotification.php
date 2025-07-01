@@ -19,6 +19,7 @@ class EmailFactoryNotification extends NotificationsFactory
 
     public function sendNotification(): void
     {
+        // Here we can add more logic or parameters to have a more complex email
         parent::sendNotification();
     }
 }
