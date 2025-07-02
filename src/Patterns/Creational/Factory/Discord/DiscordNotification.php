@@ -4,12 +4,10 @@ namespace App\Patterns\Creational\Factory\Discord;
 
 use App\Core\AbstractServices;
 use App\Patterns\Creational\Factory\Notification;
-use Symfony\Component\Mime\RawMessage;
 use Symfony\Component\Notifier\Bridge\Discord\DiscordOptions;
 use Symfony\Component\Notifier\Bridge\Discord\Embeds\DiscordEmbed;
 use Symfony\Component\Notifier\Exception\TransportExceptionInterface;
 use Symfony\Component\Notifier\Message\ChatMessage;
-use Symfony\Component\Notifier\Notification\Notification as SymfonyNotification;
 
 final class DiscordNotification extends AbstractServices implements Notification
 {
@@ -24,8 +22,7 @@ final class DiscordNotification extends AbstractServices implements Notification
             ->addEmbed((new DiscordEmbed())
                 ->color(2021216)
                 ->title('New song added!')
-            )
-        ;
+            );
 
         $chatMessage->options($discordOptions);
         $this->getDiscordNotifier()->send($chatMessage);
