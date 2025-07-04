@@ -11,6 +11,7 @@
         "symfony/console": "7.3.*",
         "symfony/discord-notifier": "7.3.*",
         "symfony/dotenv": "7.3.*",
+        "symfony/fake-sms-notifier": "7.3.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "7.3.*",
         "symfony/mailer": "7.3.*",

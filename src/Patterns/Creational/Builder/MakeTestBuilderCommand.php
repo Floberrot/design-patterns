@@ -4,7 +4,6 @@ namespace App\Patterns\Creational\Builder;
 
 use App\Core\AbstractServices;
 use App\Patterns\Creational\Builder\FancyDiscordNotification\FancyDiscordNotificationBuilder;
-use App\Patterns\Creational\Builder\SimpleDiscordNotification\SimpleDiscordNotification;
 use App\Patterns\Creational\Builder\SimpleDiscordNotification\SimpleDiscordNotificationBuilder;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -18,7 +17,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 class MakeTestBuilderCommand extends Command
 {
     public function __construct(
-        private readonly AbstractServices $abstractServices,
+        private readonly AbstractServices                 $abstractServices,
+        private readonly SimpleDiscordNotificationBuilder $simpleDiscordNotificationBuilder,
+        private readonly FancyDiscordNotificationBuilder  $fancyDiscordNotificationBuilder
     )
     {
         parent::__construct();
@@ -26,10 +27,8 @@ class MakeTestBuilderCommand extends Command
 
     public function __invoke(InputInterface $input, OutputInterface $output): int
     {
-        $simple = new SimpleDiscordNotification();
-        $simpleBuilder = new SimpleDiscordNotificationBuilder($simple);
         $director = new NotificationDirector(
-            $simpleBuilder
+            $this->simpleDiscordNotificationBuilder
         );
 
         $data = [
@@ -43,9 +42,8 @@ class MakeTestBuilderCommand extends Command
         $notification = $director->make($data);
         $this->abstractServices->getDiscordNotifier()->send($notification->content);
 
-        $fancyBuilder = new FancyDiscordNotificationBuilder();
         $director = new NotificationDirector(
-            $fancyBuilder
+            $this->fancyDiscordNotificationBuilder
         );
         $hex = '#FF5733'; // Example hex color
         $fancyData = array_merge($data, [

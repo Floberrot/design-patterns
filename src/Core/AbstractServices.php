@@ -5,6 +5,7 @@ namespace App\Core;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Notifier\ChatterInterface;
+use Symfony\Component\Notifier\TexterInterface;
 use Symfony\Contracts\Service\Attribute\SubscribedService;
 use Symfony\Contracts\Service\ServiceMethodsSubscriberTrait;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
@@ -25,5 +26,11 @@ class AbstractServices implements ServiceSubscriberInterface
     public function getDiscordNotifier(): ChatterInterface
     {
         return $this->container->get('discord');
+    }
+
+    #[SubscribedService('fakesms+email')]
+    public function getTwilioNotifier(): TexterInterface
+    {
+        return $this->container->get('fakesms+email');
     }
 }
