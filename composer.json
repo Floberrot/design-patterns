@@ -7,6 +7,7 @@
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "setasign/fpdf": "^1.8",
         "symfony/cache": "7.3.*",
         "symfony/console": "7.3.*",
         "symfony/discord-notifier": "7.3.*",
