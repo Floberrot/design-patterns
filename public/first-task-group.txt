@@ -1,0 +1,10 @@
+Task Group: First Task Group
+- Task 1
+- Task 2
+- Task 3, coucou mon petit loup
+  Task Group: Second Task Group
+  - Task 4
+
+Total tasks: 4
+Task group 'First Task Group' saved to First Task Group.txt
+--------------------
