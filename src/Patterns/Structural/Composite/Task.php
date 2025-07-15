@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Patterns\Composite;
+namespace App\Patterns\Structural\Composite;
 
 class Task extends AbstractTask implements TaskInterface
 {

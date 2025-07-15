@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Patterns\Composite;
+namespace App\Patterns\Structural\Composite;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
