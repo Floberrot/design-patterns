@@ -16,7 +16,7 @@ abstract class WorkflowLockerAndLoggerDecorator implements WorkflowInterface
 
     public function __construct(
         private WorkflowInterface $innerWorkflow,
-        private LoggerInterface   $logger,
+        protected LoggerInterface $logger,
         private LockFactory       $lockFactory,
     )
     {
