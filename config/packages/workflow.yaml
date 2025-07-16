@@ -1,0 +1,21 @@
+framework:
+    workflows:
+        my_articles:
+            type: 'state_machine'
+            marking_store:
+                type: 'method'
+                property: 'status'
+            supports:
+                - App\Pattern\Structural\Article
+            initial_marking: draft
+            places:
+                - draft
+                - review
+                - published
+            transitions:
+                submit_for_review:
+                    from: draft
+                    to: review
+                publish:
+                    from: review
+                    to: published

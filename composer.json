@@ -19,6 +19,7 @@
         "symfony/mailtrap-mailer": "7.3.*",
         "symfony/notifier": "7.3.*",
         "symfony/runtime": "7.3.*",
+        "symfony/workflow": "7.3.*",
         "symfony/yaml": "7.3.*"
     },
     "config": {
