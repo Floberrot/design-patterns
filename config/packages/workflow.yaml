@@ -6,7 +6,7 @@ framework:
                 type: 'method'
                 property: 'status'
             supports:
-                - App\Pattern\Structural\Article
+                - App\Patterns\Structural\Decorator\Article
             initial_marking: draft
             places:
                 - draft
