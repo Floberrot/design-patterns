@@ -2,8 +2,6 @@
 
 namespace App\Core\Command;
 
-use Doctrine\ORM\EntityManagerInterface;
-use Monolog\Attribute\WithMonologChannel;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Messenger\Exception\ExceptionInterface;
 use Symfony\Component\Messenger\MessageBusInterface;

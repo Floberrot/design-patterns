@@ -21,5 +21,21 @@ services:
     App\:
         resource: '../src/'
 
+    App\Patterns\Behavior\ChainOfResponsibility\Handlers\CheckApiRunningHandler:
+        tags:
+            - { name: 'app.pokemon', bus: command.bus }
+
+    App\Patterns\Behavior\ChainOfResponsibility\Handlers\SearchByPokemonNameHandler:
+        tags:
+            - { name: 'app.pokemon', bus: command.bus }
+
+    App\Patterns\Behavior\ChainOfResponsibility\Handlers\SortPokemonDataHandler:
+        tags:
+            - { name: 'app.pokemon', bus: command.bus }
+
+    App\Patterns\Behavior\ChainOfResponsibility\Handlers\NotifyUserHandler:
+        tags:
+            - { name: 'app.pokemon', bus: command.bus }
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
