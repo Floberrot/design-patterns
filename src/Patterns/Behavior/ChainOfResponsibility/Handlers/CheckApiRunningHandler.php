@@ -6,7 +6,7 @@ use App\Core\Command\CommandHandler;
 use App\Patterns\Behavior\ChainOfResponsibility\AbstractHandler;
 use App\Patterns\Behavior\ChainOfResponsibility\PokemonMessage;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
-use Symfony\Component\DependencyInjection\Attribute\AutowireIterator;
+use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler(bus: 'command.bus')]
@@ -17,7 +17,7 @@ class CheckApiRunningHandler extends AbstractHandler implements CommandHandler
     public function __construct(
         #[Autowire(env: 'POKE_API_URL')]
         private readonly string $apiUrl,
-        #[AutowireIterator('app.pokemon', indexAttribute: 'step', defaultPriorityMethod: 'getPriority')]
+        #[TaggedIterator('app.pokemon', indexAttribute: 'step', defaultPriorityMethod: 'getPriority')]
         iterable                $steps,
     )
     {

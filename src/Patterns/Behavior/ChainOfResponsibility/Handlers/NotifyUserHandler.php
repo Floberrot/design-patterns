@@ -8,7 +8,7 @@ use App\Patterns\Behavior\ChainOfResponsibility\PokemonMessage;
 use App\Patterns\Creational\Builder\NotificationDirector;
 use App\Patterns\Creational\Builder\NotificationTypeEnum;
 use App\Patterns\Creational\Builder\SimpleDiscordNotification\SimpleDiscordNotificationBuilder;
-use Symfony\Component\DependencyInjection\Attribute\AutowireIterator;
+use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler(bus: 'command.bus')]
@@ -17,7 +17,7 @@ class NotifyUserHandler extends AbstractHandler
     public const int DEFAULT_PRIORITY = 1;
 
     public function __construct(
-        #[AutowireIterator('app.pokemon', indexAttribute: 'step', defaultPriorityMethod: 'getPriority')]
+        #[TaggedIterator('app.pokemon', indexAttribute: 'step', defaultPriorityMethod: 'getPriority')]
         iterable                                 $steps,
         private SimpleDiscordNotificationBuilder $simpleDiscordNotificationBuilder,
         private AbstractServices                 $abstractServices,
