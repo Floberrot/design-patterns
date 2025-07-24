@@ -2,7 +2,7 @@
 
 namespace App\Patterns\Behavior\Iterator;
 
-class BoxCollection implements IteratorAggregateInterface
+class BoxCollection implements \IteratorAggregate
 {
     /**
      * @var Box|Book[]

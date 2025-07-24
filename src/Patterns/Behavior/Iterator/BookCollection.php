@@ -2,7 +2,7 @@
 
 namespace App\Patterns\Behavior\Iterator;
 
-class BookCollection implements IteratorAggregateInterface
+class BookCollection implements \IteratorAggregate
 {
 
     /**

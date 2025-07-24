@@ -19,6 +19,9 @@ class MakeTestIteratorCommand extends Command
         parent::__construct();
     }
 
+    /**
+     * @throws \Exception
+     */
     public function __invoke(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
@@ -29,6 +32,57 @@ class MakeTestIteratorCommand extends Command
         $io->success('Book collection iterated successfully!');
 
         $io->info('Creating a collection of boxes...');
+        $this->boxIterator($io);
+
+        return Command::SUCCESS;
+    }
+
+    /**
+     * @param SymfonyStyle $io
+     * @return void
+     * @throws \Exception
+     */
+    public function bookIterator(SymfonyStyle $io): void
+    {
+        $book1 = new Book();
+        $book1->id = 1;
+        $book1->title = 'The Great Gatsby';
+        $book1->author = 'F. Scott Fitzgerald';
+        $book1->summary = 'A novel set in the 1920s that explores themes of decadence, idealism, and social upheaval.';
+        $book2 = new Book();
+        $book2->id = 2;
+        $book2->title = '1984';
+        $book2->author = 'George Orwell';
+        $book2->summary = 'A dystopian novel that delves into the dangers of totalitarianism and extreme political ideology.';
+        $book3 = new Book();
+        $book3->id = 3;
+        $book3->title = 'To Kill a Mockingbird';
+        $book3->author = 'Harper Lee';
+        $book3->summary = 'A novel that addresses serious issues like racial injustice and moral growth through the eyes of a child in the Deep South.';
+        $bookCollection = new BookCollection();
+        $bookCollection
+            ->addBook($book1)
+            ->addBook($book2)
+            ->addBook($book3);
+        $io->info('Iterating through the book collection...');
+        foreach ($bookCollection as $item) {
+            $io->writeln(sprintf(
+                'Book ID: %d, Title: %s, Author: %s, Summary: %s',
+                $item->id,
+                $item->title,
+                $item->author,
+                $item->summary
+            ));
+        }
+    }
+
+    /**
+     * @param SymfonyStyle $io
+     * @return void
+     * @throws \Exception
+     */
+    public function boxIterator(SymfonyStyle $io): void
+    {
         $box1 = new Box();
         $box1->id = 1;
         $box1->name = 'Box 1';
@@ -65,8 +119,7 @@ class MakeTestIteratorCommand extends Command
             ->addBox($box3);
         $boxCollection->addBook($book2);
         $io->info('Iterating through the box collection...');
-        $iterator = $boxCollection->getIterator();
-        foreach ($iterator as $item) {
+        foreach ($boxCollection as $item) {
             if ($item instanceof Box) {
                 $io->writeln(sprintf(
                     'Box ID: %d, Name: %s, Code: %s',
@@ -83,47 +136,6 @@ class MakeTestIteratorCommand extends Command
                     $item->summary
                 ));
             }
-        }
-
-        return Command::SUCCESS;
-    }
-
-    /**
-     * @param SymfonyStyle $io
-     * @return void
-     */
-    public function bookIterator(SymfonyStyle $io): void
-    {
-        $book1 = new Book();
-        $book1->id = 1;
-        $book1->title = 'The Great Gatsby';
-        $book1->author = 'F. Scott Fitzgerald';
-        $book1->summary = 'A novel set in the 1920s that explores themes of decadence, idealism, and social upheaval.';
-        $book2 = new Book();
-        $book2->id = 2;
-        $book2->title = '1984';
-        $book2->author = 'George Orwell';
-        $book2->summary = 'A dystopian novel that delves into the dangers of totalitarianism and extreme political ideology.';
-        $book3 = new Book();
-        $book3->id = 3;
-        $book3->title = 'To Kill a Mockingbird';
-        $book3->author = 'Harper Lee';
-        $book3->summary = 'A novel that addresses serious issues like racial injustice and moral growth through the eyes of a child in the Deep South.';
-        $bookCollection = new BookCollection();
-        $bookCollection
-            ->addBook($book1)
-            ->addBook($book2)
-            ->addBook($book3);
-        $io->info('Iterating through the book collection...');
-        $iterator = $bookCollection->getIterator();
-        foreach ($iterator as $item) {
-            $io->writeln(sprintf(
-                'Book ID: %d, Title: %s, Author: %s, Summary: %s',
-                $item->id,
-                $item->title,
-                $item->author,
-                $item->summary
-            ));
         }
     }
 }
