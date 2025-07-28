@@ -25,6 +25,7 @@
         "symfony/mailer": "7.3.*",
         "symfony/mailtrap-mailer": "7.3.*",
         "symfony/messenger": "7.3.*",
+        "symfony/monolog-bundle": "^3.10",
         "symfony/notifier": "7.3.*",
         "symfony/runtime": "7.3.*",
         "symfony/stopwatch": "7.3.*",
